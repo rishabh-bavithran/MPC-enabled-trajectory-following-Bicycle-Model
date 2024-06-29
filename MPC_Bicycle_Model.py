@@ -31,7 +31,7 @@ def trajectory_generator(t):
 
     x_dot=constants['x_dot']
     x=np.linspace(0,x_dot*t[-1],num=len(t))
-    y = 7 * np.sin((np.pi/5) * t) - 7 * np.cos((np.pi/5) * t) 
+    y = 8 * np.sin((np.pi/6) * t) - 8 * np.cos((np.pi/6) * t) 
 
     dx=x[1:len(x)]-x[0:len(x)-1]
     dy=y[1:len(y)]-y[0:len(y)-1]
@@ -195,7 +195,7 @@ for i in range(0,len(refSignals),outputs):
 y_dot=0.
 psi=0.
 psi_dot=0.
-Y=Y_ref[0]+10.
+Y=Y_ref[0]-3.
 states=np.array([y_dot,psi,psi_dot,Y])
 statesTotal=np.zeros((len(t),len(states))) 
 statesTotal[0][0:len(states)]=states
@@ -268,22 +268,18 @@ n=1
 m=1
 gs=gridspec.GridSpec(n,m)
 
-ax0=fig.add_subplot(gs[:,:],facecolor=(0.9,0.9,0.9))
-ref_trajectory=ax0.plot(X_ref,Y_ref,'b',linewidth=1)
-lane_width=constants['lane_width']
-lane_1,=ax0.plot([X_ref[0],X_ref[frame_amount]],[lane_width/2,lane_width/2],'k',linewidth=0.2)
-lane_2,=ax0.plot([X_ref[0],X_ref[frame_amount]],[-lane_width/2,-lane_width/2],'k',linewidth=0.2)
-lane_3,=ax0.plot([X_ref[0],X_ref[frame_amount]],[lane_width/2+lane_width,lane_width/2+lane_width],'k',linewidth=0.2)
-lane_4,=ax0.plot([X_ref[0],X_ref[frame_amount]],[-lane_width/2-lane_width,-lane_width/2-lane_width],'k',linewidth=0.2)
-lane_5,=ax0.plot([X_ref[0],X_ref[frame_amount]],[lane_width/2+2*lane_width,lane_width/2+2*lane_width],'k',linewidth=3)
-lane_6,=ax0.plot([X_ref[0],X_ref[frame_amount]],[-lane_width/2-2*lane_width,-lane_width/2-2*lane_width],'k',linewidth=3)
-car_1,=ax0.plot([],[],'k',linewidth=3)
-car_predicted,=ax0.plot([],[],'-m',linewidth=1)
-car_determined,=ax0.plot([],[],'-r',linewidth=1)
+ax0=fig.add_subplot(gs[:,:],facecolor=(0.2,0.2,0.2))
+ref_trajectory=ax0.plot(X_ref,Y_ref,'g', linestyle='--', linewidth=1, label = "Reference Trajectory")
+lane_1,=ax0.plot([X_ref[0],X_ref[frame_amount]],[0,0],color = (0.7,0.7,0.7), linestyle='--',linewidth=6, label= "Lane Divider")
+car_1,=ax0.plot([],[],'w',linewidth=3, label= "Bicycle")
+car_predicted,=ax0.plot([],[],color = 'orange',linewidth=1, label="Horizon Period Prediction")
+car_determined,=ax0.plot([],[],'-r',linewidth=1, label= "Traversed Trajectory")
 plt.xlim(X_ref[0],X_ref[frame_amount])
 plt.ylim(-X_ref[frame_amount]/(n*(fig_x/fig_y)*2),X_ref[frame_amount]/(n*(fig_x/fig_y)*2))
-plt.ylabel('Y-distance [m]',fontsize=15)
-plt.xlabel('X-distance [m]',fontsize=15)
+plt.ylabel('Lanes',fontsize=15)
+plt.xlabel('distance travelled [m]',fontsize=15)
+ax0.legend(loc='lower right', fontsize='large')
 car_ani=animation.FuncAnimation(fig, update_plot,
     frames=frame_amount,interval=20,repeat=True,blit=True)
+plt.gcf().canvas.set_window_title('MPC_Bicycle_Model')
 plt.show()
