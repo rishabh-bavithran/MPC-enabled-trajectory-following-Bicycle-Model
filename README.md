@@ -1,4 +1,3 @@
-Copy code
 # MPC Bicycle Model Simulation
 
 ![MPC_Bicycle_model](https://github.com/Kelvin4915/MPC_Bicycle_Model/assets/134540002/87e69b86-82bb-4c7e-b067-006fc6b6a1b6)
