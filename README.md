@@ -1,6 +1,6 @@
 # MPC Bicycle Model Simulation
 
-![MPC_Bicycle_model](https://github.com/Kelvin4915/MPC_Bicycle_Model/assets/134540002/87e69b86-82bb-4c7e-b067-006fc6b6a1b6)
+![MPC_Bicycle](https://github.com/rishabh-bavithran/MPC-Bicycle-Model/assets/145865695/08ea369a-752f-4846-b601-bc4958ae2137)
 
 This project simulates an MPC (Model Predictive Controller) for a simplified bicycle model. The goal is to implement a control system that can effectively navigate a bicycle model based on predictive modeling and control techniques.
 
