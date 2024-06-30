@@ -16,8 +16,8 @@ The simulation assumes the following:
 
 - **Total Simulation Time:** 10 seconds
 - **MPC Calculation Interval:** 0.01 seconds
-- **Horizion Period:** 5 seconds
+- **Horizion Period:** 5 seconds 
 - **Cost Function:** Quadratic
 - **Cost Function Parameters:** error along y-axis and change in steering angle
-- **State Space Variables:** Interpolated with a timestep divided into 20 segments.
-- **Visualization:** Results are animated post-simulation.
+- **Predicted State Space Variables:** Obtained using Forward Euler Integration
+- **Visualization:** Results are animated post-simulation
